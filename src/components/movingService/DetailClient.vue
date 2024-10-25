@@ -120,7 +120,7 @@
 <script setup>
 import { ref, toRef } from "vue";
 import { Money } from "@/utils/utils.js";
-import ServiceDetailsComponent from "@/components/searchService/ServiceDetails.vue";
+import ServiceDetailsComponent from "@/components/movingService/ServiceDetails.vue";
 
 const props = defineProps(["client"]);
 
