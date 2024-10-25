@@ -33,7 +33,7 @@
 </template>
 
 <script setup>
-import DetailClient from "../components/searchService/DetailClient.vue";
+import DetailClient from "../components/movingService/DetailClient.vue";
 import { useDrawerStore } from "@/stores/mainStore/global-navbar-store.js";
 import { ref, computed, onMounted } from "vue";
 
