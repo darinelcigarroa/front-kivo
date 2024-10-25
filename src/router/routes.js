@@ -23,6 +23,11 @@ const routes = [
         component: () => import("pages/SearchService.vue"),
       },
       {
+        path: "confirm-service",
+        name: "confirm-service",
+        component: () => import("pages/ConfirmService.vue"),
+      },
+      {
         path: "my-profile",
         name: "my-profile",
         component: () => import("pages/MyProfile.vue"),
