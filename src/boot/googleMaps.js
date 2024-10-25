@@ -14,7 +14,6 @@ export default () => {
     // Si no está cargado, creamos el script con async y defer
     const script = document.createElement("script");
     script.src = `https://maps.googleapis.com/maps/api/js?key=${googleMapsApiKey}&libraries=places&callback=initMap`;
-    console.log(`output->`, script.src);
     // script.async = true;
     script.defer = true;
 

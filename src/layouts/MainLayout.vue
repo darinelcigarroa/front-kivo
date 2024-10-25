@@ -150,16 +150,22 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import myIcon from "@/assets/logo-kivo.svg";
 import { useDrawerStore } from "@/stores/mainStore/global-navbar-store";
 import { useMapStore } from "@/stores/google-map/map-store";
+import { notifySuccess } from "src/utils/notifications";
 
 const mapStore = useMapStore();
 const drawerStore = useDrawerStore();
 const drawer = ref(true);
 
 const showMap = computed(() => mapStore.isMapVisible);
+
+onMounted(() => {
+  notifySuccess();
+  console.log("On mounted");
+});
 
 const miniDrawer = () => {
   drawerStore.miniDrawer();
