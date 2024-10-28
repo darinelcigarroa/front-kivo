@@ -2,7 +2,7 @@
   <q-page class="q-pa-xs">
     <div class="grid-container">
       <div class="title">
-        <span class="text-h6 ">Completar solicitud</span>
+        <span class="text-h6">Completar solicitud</span>
       </div>
       <q-card class="addresses q-my-md" style="border-radius: 15px">
         <q-card-section class="addresses__content row">
@@ -48,7 +48,7 @@
             <q-img
               color="primary"
               :src="logo"
-              style="height: 4.5em; max-width: 3em"
+              style="height: 4em; max-width: 2.3em"
             />
           </div>
         </q-card-section>
@@ -64,6 +64,44 @@
             <q-img :src="url" spinner-color="white" style="height: 140px" />
           </div>
         </q-card-section>
+        <q-card-section>
+          <div class="row justify-between">
+            <span class="text-h6">Lista de articulos</span>
+            <q-icon size="sm" name="fa-solid fa-ellipsis" />
+          </div>
+          <q-list bordered>
+            <q-item
+              v-for="article in articles"
+              :key="article.id"
+              class="q-my-sm"
+              clickable
+              v-ripple
+            >
+              <q-item-section avatar>
+                <q-avatar rounded color="primary" text-color="white">
+                  <img :src="box" />
+                </q-avatar>
+              </q-item-section>
+
+              <q-item-section>
+                <q-item-label>{{ article.name }}</q-item-label>
+                <q-item-label caption lines="1">
+                  Cantidad: {{ article.number }}</q-item-label
+                >
+              </q-item-section>
+
+              <q-item-section side>
+                <q-btn
+                  round
+                  size="sm"
+                  color="primary"
+                  @click="deleteArticle"
+                  icon="fa-solid fa-trash"
+                />
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </q-card-section>
       </q-card>
     </div>
   </q-page>
@@ -71,9 +109,18 @@
 
 <script setup>
 import logo from "@/assets/logo-primary.svg";
+import box from "@/assets/box.svg";
 
 import { ref } from "vue";
 const url = ref("https://picsum.photos/500/300");
+
+const articles = Array.from({ length: 20 }, (_, i) => ({
+  name: `Artículo ${i + 1}`,
+  number: i + 1,
+}));
+const deleteArticle = () => {
+  console.log("deleteArticle");
+};
 </script>
 
 <style scoped>
@@ -81,7 +128,7 @@ const url = ref("https://picsum.photos/500/300");
 .grid-container {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 15px;
+  gap: 5px;
   padding: 10px;
 }
 
@@ -118,6 +165,9 @@ const url = ref("https://picsum.photos/500/300");
   display: flex;
   flex-direction: row-reverse;
   padding: 10px;
+}
+.location .q-avatar:hover {
+  background: aqua;
 }
 .type-transport__content {
   display: grid;
