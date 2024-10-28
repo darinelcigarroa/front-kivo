@@ -69,16 +69,20 @@
             <span class="text-h6">Lista de articulos</span>
             <q-icon size="sm" name="fa-solid fa-ellipsis" />
           </div>
-          <q-list bordered>
+          <q-list>
             <q-item
               v-for="article in articles"
               :key="article.id"
-              class="q-my-sm"
+              class="q-my-md"
               clickable
               v-ripple
             >
               <q-item-section avatar>
-                <q-avatar rounded color="primary" text-color="white">
+                <q-avatar
+                  rounded
+                  text-color="white"
+                  style="background-color: #c57393"
+                >
                   <img :src="box" />
                 </q-avatar>
               </q-item-section>
@@ -93,7 +97,7 @@
               <q-item-section side>
                 <q-btn
                   round
-                  size="sm"
+                  size="md"
                   color="primary"
                   @click="deleteArticle"
                   icon="fa-solid fa-trash"
@@ -103,6 +107,7 @@
           </q-list>
         </q-card-section>
       </q-card>
+      <q-btn fab icon="fa-solid fa-plus" class="q-fab-bottom-right fixed" />
     </div>
   </q-page>
 </template>
@@ -177,5 +182,16 @@ const deleteArticle = () => {
 
 .type-transport {
   background: var(--general) !important;
+}
+.q-item {
+  padding: 0px;
+}
+.fixed {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 10;
+  background: var(--gold);
+  color: var(--letter);
 }
 </style>
