@@ -1,37 +1,58 @@
 <template>
-  <q-page class="main-home grid-container" :class="{ active: isActive }">
-    <div class="left-section" :class="{ 'move-right': isActive }">
-      <img :src="homeKivo" alt="Camión de mudanzas" />
-      <div class="button-container">
-        <span>Encuentra el mejor servicio de fletes y mudanzas fácilmente</span>
-        <q-btn
-          unelevated
-          rounded
-          color="accent"
-          :label="labelButton"
-          class="q-mt-md"
+  <q-page class="main-home" :class="{ active: isActive }">
+    <div class="text-center q-pt-xl">
+      <div>
+        <span class="text-h6" style="font-size: 1.8em"
+          >Encuentra el <span class="text-primary t">mejor servicio</span> de
+          fletes y mudanzas fácilmente</span
+        >
+      </div>
+      <div class="q-mt-sm">
+        <span
+          class="text-primary cursor-pointer underline text-weight-bolder attention-animate"
           @click="toggleMove"
-        />
+          >{{ labelButton }}</span
+        >
       </div>
     </div>
-    <div class="right-section" :class="{ 'move-left': isActive }">
-      <FormRequestRegister v-if="isActive" />
-      <FormRequestService v-else @code-validation="codeValidation" />
+    <div class="grid-container">
+      <div class="left-section" :class="{ 'move-right': isActive }">
+        <video
+          src="@/assets/video/global-home.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+          style="width: 90%; height: 90%; object-fit: cover"
+        ></video>
+        <!-- <div class="button-container">
+          <q-btn
+            unelevated
+            :label="labelButton"
+            color="primary"
+            class="submit"
+            @click="toggleMove"
+          />
+        </div> -->
+      </div>
+      <div class="right-section" :class="{ 'move-left': isActive }">
+        <FormRequestRegister v-if="isActive" />
+        <FormRequestService v-else @code-validation="codeValidation" />
+      </div>
     </div>
     <q-dialog v-model="showCodeVerification">
-      <CodeVerification  />
+      <CodeVerification />
     </q-dialog>
   </q-page>
 </template>
 
 <script setup>
 import { ref } from "vue";
-import homeKivo from "@/assets/img/home/homeKivo.svg";
 import FormRequestRegister from "../components/home/FormRequestRegister.vue";
 import FormRequestService from "../components/home/FormRequestService.vue";
 import CodeVerification from "../components/home/CodeVerification.vue";
 
-let labelButton = "Quiero ser conductor";
+let labelButton = "¿Eres un conductor?";
 // Estado para controlar la animación IsActive false = cliente, contrario conductor
 const isActive = ref(false);
 const showCodeVerification = ref(false);
@@ -39,9 +60,9 @@ const showCodeVerification = ref(false);
 const toggleMove = () => {
   isActive.value = !isActive.value;
   if (isActive.value) {
-    labelButton = "Quiero ser contratista";
+    labelButton = "Quiero un servicio";
   } else {
-    labelButton = "Quiero ser conductor";
+    labelButton = "¿Eres un conductor?";
   }
 };
 
@@ -52,74 +73,92 @@ const codeValidation = () => {
 </script>
 
 <style scoped>
+.underline {
+  text-decoration: underline;
+  font-size: 1.2em;
+}
+
+/* Animación sutil para llamar la atención */
+.attention-animate {
+  display: inline-block;
+  /* El ciclo total dura 5s y se repite infinitamente */
+  animation: spinX 10s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  backface-visibility: hidden;
+}
+
+@keyframes spinX {
+  /* El giro ocurre en el primer 40% del tiempo (2s de 5s) */
+  0% {
+    transform: rotateY(0deg);
+  }
+  20% {
+    transform: rotateY(360deg);
+  }
+  /* Desde el 40% al 100% se mantiene quieto (pausa de 3s) */
+  100% {
+    transform: rotateY(360deg);
+  }
+}
 .grid-container {
   display: grid;
-  grid-template-columns: 5fr 2fr;
-  height: 100vh;
+  grid-template-columns: 3fr 2fr;
+  height: calc(85vh - 48px);
   position: relative;
   overflow: hidden;
 }
 
-.left-section img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.submit {
+  font-weight: 400;
+  cursor: pointer;
+  font-size: 1em;
+  background-color: var(--primary);
+  border-radius: 10px;
+  padding: 10px;
+  border: none;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .left-section {
-  /* background: red; */
-  padding: 80px;
+  padding: 20px 60px 0 60px; /* Menos padding arriba */
   display: flex;
-  justify-content: center;
+  justify-content: center; /* <--- MODIFICADO */
   align-items: center;
   flex-direction: column;
   z-index: 1;
   position: relative;
   transition: transform 0.8s ease-in-out, clip-path 0.8s ease-in-out;
-  /* Transición suave */
+  height: 100%;
 }
 
 .right-section {
-  background: linear-gradient(
-    to right,
-    rgba(228, 228, 228, 0.937),
-    rgba(255, 255, 255, 0.937)
-  );
-  padding: 2rem;
+  padding: 20px 40px 0 40px; /* Menos padding arriba */
   display: flex;
+  justify-content: center; /* <--- MODIFICADO */
+  align-items: center;
   flex-direction: column;
-  justify-content: flex-end;
-  position: relative;
   z-index: 2;
-  transition: transform 0.8s ease-in-out, background 0.8s ease-in-out;
-  /* Transición de color suave */
-  clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
-  /* Diagonal inicial */
+  position: relative;
+  transition: transform 0.8s ease-in-out, clip-path 0.8s ease-in-out;
+  height: 100%;
+  margin-left: -110px;
+  overflow: hidden;
 }
+
+/* El resto de tu CSS permanece igual... */
 
 /* Efecto cuando se activa la clase 'move-right' */
 .move-right {
-  transform: translateX(33vw);
-  background: linear-gradient(
-    to right,
-    rgba(238, 237, 237, 0.937),
-    rgba(255, 255, 255, 0.937)
-  );
-  clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
-  /* Ajuste de la diagonal */
+  transform: translateX(40vw);
 }
 
 /* Cambios cuando la clase 'move-left' está activa */
 .move-left {
-  background: #fff;
-  /* background: rgb(26, 102, 92); */
-  transform: translateX(-52vw);
-  clip-path: none !important;
+  transform: translateX(-45vw);
 }
 
 .button-container {
   position: absolute;
-  bottom: 12%;
+  bottom: 4.2%;
   height: 50px;
   width: 100%;
   display: flex;
@@ -145,17 +184,22 @@ const codeValidation = () => {
   .right-section {
     width: 100%;
     height: auto;
+    margin-left: 0;
+    border-radius: 0;
+    box-shadow: none;
   }
 }
 
 @media (min-width: 601px) and (max-width: 899px) {
   .grid-container {
     grid-template-columns: 1fr 1fr;
-  }
-
-  .left-section,
-  .right-section {
-    width: 100%;
+    .left-section,
+    .right-section {
+      width: 100%;
+      margin-left: 0;
+      border-radius: 0;
+      box-shadow: none;
+    }
   }
 }
 </style>

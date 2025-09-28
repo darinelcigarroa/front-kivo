@@ -4,14 +4,18 @@
       id="signupForm"
       @submit="onSubmit"
       @reset="onReset"
-      class="form q-pa-lg text-center"
+      class="form text-center"
     >
-      <h4>Conductor</h4>
+      <span class="text-h5">Quiero ser Conductor</span>
 
       <q-input class="inputBox col-12" v-model="name" label="Nombre">
         <template v-slot:prepend>
           <div class="icon-container">
-            <q-icon class="q-px-sm iconForm" name="fa-solid fa-user"></q-icon>
+            <q-icon
+              color="accent"
+              class="q-px-sm iconForm"
+              name="fa-solid fa-user"
+            ></q-icon>
           </div>
         </template>
       </q-input>
@@ -23,7 +27,11 @@
       >
         <template v-slot:prepend>
           <div class="icon-container">
-            <q-icon class="q-px-sm iconForm" name="fas fa-user-tie"></q-icon>
+            <q-icon
+              color="accent"
+              class="q-px-sm iconForm"
+              name="fas fa-user-tie"
+            ></q-icon>
           </div>
         </template>
       </q-input>
@@ -36,6 +44,7 @@
         <template v-slot:prepend>
           <div class="icon-container">
             <q-icon
+              color="accent"
               class="q-px-sm iconForm"
               name="fas fa-user-friends"
             ></q-icon>
@@ -53,7 +62,11 @@
       >
         <template v-slot:prepend>
           <div class="icon-container">
-            <q-icon class="q-px-sm iconForm" name="my_location"></q-icon>
+            <q-icon
+              color="accent"
+              class="q-px-sm iconForm"
+              name="my_location"
+            ></q-icon>
           </div>
         </template>
       </q-select>
@@ -65,7 +78,11 @@
       >
         <template v-slot:prepend>
           <div class="icon-container">
-            <q-icon class="q-px-sm iconForm" name="smartphone"></q-icon>
+            <q-icon
+              color="accent"
+              class="q-px-sm iconForm"
+              name="smartphone"
+            ></q-icon>
           </div>
         </template>
       </q-input>
@@ -116,16 +133,16 @@ watch(location, (newValue) => {
 
 <style scoped>
 .container {
-  width: 100%;
-  max-width: 600px;
-  padding: 20px;
+  /* background: #666666; */
+  width: 95%;
+  padding: 0px;
   display: flex;
-  justify-content: center;
+  justify-content: end;
   align-items: center;
 }
 
 .form {
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -178,7 +195,7 @@ watch(location, (newValue) => {
 .submit {
   font-weight: 400;
   cursor: pointer;
-  width: 70%;
+  min-width: 70%;
   font-size: 1.2em;
   background-color: var(--primary);
   border-radius: 10px;
@@ -186,10 +203,6 @@ watch(location, (newValue) => {
   border: none;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
-
-/* .submit:hover {
-    background-color: var(--primary-dark);
-} */
 
 @media only screen and (min-width: 300px) and (max-width: 600px) {
   .form h4 {

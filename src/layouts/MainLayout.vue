@@ -1,24 +1,5 @@
 <template>
   <q-layout view="hHh Lpr lff" container style="height: 100vh" class="shadow-2">
-    <q-header class="drawer">
-      <q-toolbar class="row items-center justify-between q-gutter-sm">
-        <div>
-          <img
-            v-if="!drawer && $q.screen.lt.md"
-            :src="myIcon"
-            class="logoSmall"
-            :to="{ name: 'home' }"
-          />
-        </div>
-        <q-btn
-          flat
-          dense
-          round
-          icon="fa-solid fa-bars"
-          @click="drawer = !drawer"
-        />
-      </q-toolbar>
-    </q-header>
     <q-drawer
       v-model="drawer"
       :mini="!drawer || drawerStore.isMiniDrawer"
@@ -139,7 +120,7 @@
     </q-drawer>
 
     <q-page-container>
-      <q-page class="q-px-md">
+      <q-page class="q-px-xs">
         <router-view></router-view>
       </q-page>
     </q-page-container>

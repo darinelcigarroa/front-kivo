@@ -4,9 +4,9 @@
       id="signupForm"
       @submit="onSubmit"
       @reset="onReset"
-      class="form q-pa-lg text-center"
+      class="form q-pa-lg text-center shadow-box"
     >
-      <h4>Quiero un servicio</h4>
+      <span class="text-h5">Quiero un servicio</span>
       <q-select
         class="inputBox col-12"
         label="¿Lugar de origen?"
@@ -222,17 +222,16 @@ watch(placeOrigin, (newValue) => {
 </script>
 
 <style scoped>
-.container {
-  width: 100%;
-  max-width: 600px;
-  padding: 20px;
+.container[data-v-ac55b90c] {
+  /* background: violet; */
+  width: 95%;
+  padding: 0px;
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 
 .form {
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -285,7 +284,7 @@ watch(placeOrigin, (newValue) => {
 .submit {
   font-weight: 400;
   cursor: pointer;
-  width: 70%;
+  min-width: 70%;
   font-size: 1.2em;
   background-color: var(--primary);
   border-radius: 10px;
@@ -293,10 +292,6 @@ watch(placeOrigin, (newValue) => {
   border: none;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
-
-/* .submit:hover {
-    background-color: var(--primary-dark);
-} */
 
 @media only screen and (min-width: 300px) and (max-width: 600px) {
   .form h4 {
