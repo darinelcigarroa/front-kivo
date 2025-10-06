@@ -1,7 +1,7 @@
 <template>
   <q-card class="card" flat bordered>
     <q-card-section
-      class="col-12 q-pt-md q-px-md flex justify-between items-center"
+      class="col-12 q-py-sm q-px-sm flex justify-between items-center"
     >
       <span class="text-h5">Información básica</span>
       <q-icon
@@ -12,8 +12,8 @@
         name="fa-solid fa-pen"
       ></q-icon>
     </q-card-section>
-    <q-card-section class="row items-stretch">
-      <div class="col-md-5 col-xs-12 q-pa-md">
+    <q-card-section class="row items-stretch q-py-none q-px-sm">
+      <div class="col-md-5 col-xs-12">
         <q-img
           class="card__img"
           src="https://fastly.picsum.photos/id/64/4326/2884.jpg?hmac=9_SzX666YRpR_fOyYStXpfSiJ_edO3ghlSRnH2w09Kg"
@@ -82,6 +82,12 @@ const openForm = () => {
 
 .card__icon {
   cursor: pointer;
+  background-color: var(--skip-shade-2-light);
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .card__data .card__data-title {

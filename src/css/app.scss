@@ -73,6 +73,16 @@ $skipShadesLight: (
   "skip-shade-4-light": $skip-shade-4-light,
 );
 
+// Paleta "Matching Gradient"
+$matchingGradients: (
+  "matching-gradient-1": $matching-gradient-1,
+  "matching-gradient-2": $matching-gradient-2,
+  "matching-gradient-3": $matching-gradient-3,
+  "matching-gradient-4": $matching-gradient-4,
+  "matching-gradient-5": $matching-gradient-5,
+  "matching-gradient-6": $matching-gradient-6,
+);
+
 // Generar clases .bg-* y .text-* para la paleta Gradient
 @each $name, $color in $gradients {
   .bg-#{$name} {
@@ -105,6 +115,16 @@ $skipShadesLight: (
 
 // Generar clases para la versión clara
 @each $name, $color in $skipShadesLight {
+  .bg-#{$name} {
+    background-color: $color !important;
+  }
+  .text-#{$name} {
+    color: $color !important;
+  }
+}
+
+// Generar clases .bg-* y .text-* para la paleta Matching Gradient
+@each $name, $color in $matchingGradients {
   .bg-#{$name} {
     background-color: $color !important;
   }

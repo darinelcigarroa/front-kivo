@@ -86,10 +86,9 @@
         <!-- Item 1: Me gusta -->
         <div class="column items-center q-mx-md">
           <q-avatar
-            size="2.5em"
+            size="2.7em"
             square
-            color="gradient-2"
-            text-color="white"
+            text-color="gradient-2"
             icon="fa-solid fa-heart"
           />
           <div class="text-center q-mt-xs">
@@ -101,11 +100,10 @@
         <!-- Item 2: Comentarios -->
         <div class="column items-center q-mx-md">
           <q-avatar
-            size="2.5em"
+            size="2.7em"
             square
-            color="gradient-2"
-            text-color="white"
-            icon="fa-solid fa-comment"
+            text-color="gradient-2"
+            icon="fa-solid fa-message"
           />
           <div class="text-center q-mt-xs">
             <q-item-label>Comentarios</q-item-label>
@@ -116,10 +114,9 @@
         <!-- Item 3: Evaluación -->
         <div class="column items-center q-mx-md">
           <q-avatar
-            size="2.5em"
+            size="2.7em"
             square
-            color="gradient-2"
-            text-color="white"
+            text-color="gradient-2"
             icon="fa-solid fa-star"
           />
           <div class="text-center q-mt-xs">

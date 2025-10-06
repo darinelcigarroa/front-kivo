@@ -1,6 +1,11 @@
 <template>
-  <q-card class="card row card--direction-column" flat bordered>
-    <q-card-section class="card__summary col-12">
+  <q-card class="card card--direction-column" flat bordered>
+    <q-card-section
+      class="col-12 q-pt-none q-px-md flex justify-between items-center"
+    >
+      <span class="text-h5">Últimos dos meses</span>
+    </q-card-section>
+    <q-card-section class="card__summary col-12 q-py-none q-px-none">
       <q-item>
         <q-item-section side>
           <q-avatar
@@ -24,6 +29,7 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from "vue";
 import ApexCharts from "apexcharts";
+import { colors } from "quasar";
 
 let chart = null;
 const chartOptions = ref({
@@ -52,6 +58,10 @@ const chartOptions = ref({
       },
     ],
   },
+  colors: [
+    colors.getPaletteColor("matching-gradient-2"),
+    colors.getPaletteColor("matching-gradient-3"),
+  ],
   dataLabels: {
     enabled: false,
   },
@@ -67,13 +77,6 @@ const chartOptions = ref({
     strokeWidth: 1,
     hover: {
       size: 8,
-    },
-  },
-  title: {
-    text: "Últimos Dos Meses",
-    align: "center",
-    style: {
-      fontSize: "16px",
     },
   },
   xaxis: {

@@ -1,7 +1,9 @@
 <template>
-  <q-card class="card" flat bordered>
-    <q-card-section class="col-12 q-pt-none q-px-md flex justify-between">
-      <span class="text-h5 q-ml-xs q-my-sm">Perfil del vehiculo</span>
+  <q-card class="card full-height" flat bordered>
+    <q-card-section
+      class="col-12 q-py-sm q-px-sm flex justify-between items-center"
+    >
+      <span class="text-h5">Perfil del vehiculo</span>
       <q-icon
         @click="openForm"
         class="card__icon flex align-center"
@@ -10,8 +12,8 @@
         name="fa-solid fa-pen"
       ></q-icon>
     </q-card-section>
-    <q-card-section class="row q-pa-none">
-      <div class="col-md-6 col-xs-12">
+    <q-card-section class="row q-pa-none items-stretch flex-grow">
+      <div class="col-md-5 col-xs-12 q-px-sm">
         <q-carousel
           height="100%"
           swipeable
@@ -20,13 +22,15 @@
           navigation
           infinite
           autoplay
+          style="border-radius: 15px"
           v-model="slide"
           v-model:fullscreen="fullscreen"
+          class="full-height"
           :class="{ 'card--fullscreen-carousel': fullscreen }"
         >
           <q-carousel-slide
             :name="1"
-            img-src="https://images.unsplash.com/photo-1529369627985-112c94382yg"
+            img-src="https://i.pinimg.com/originals/5c/be/3d/5cbe3dd5a9df82055f19cf256921af8e.jpg"
           ></q-carousel-slide>
           <q-carousel-slide
             :name="2"
@@ -51,7 +55,7 @@
           </template>
         </q-carousel>
       </div>
-      <div class="col-md-6 col-xs-12 q-pa-lg rounded-borders">
+      <div class="col-md-7 col-xs-12 q-pa-md column justify-between">
         <div class="card__data">
           <div class="card__data-title">
             <span class="text-weight-bold">Tipo de Vehículo:</span>
@@ -60,7 +64,7 @@
             <span>Camioneta doble cabina alv</span>
           </div>
         </div>
-        <q-separator></q-separator>
+        <q-separator />
         <div class="card__data">
           <div class="card__data-title">
             <span class="text-weight-bold">Marca:</span>
@@ -69,14 +73,14 @@
             <span>Cigarroa de Los Santos</span>
           </div>
         </div>
-        <q-separator></q-separator>
+        <q-separator />
         <div class="card__data">
           <div class="card__data-title">
             <span class="text-weight-bold">Modelo:</span>
           </div>
           <div class="card__data-value"><span>Corolla</span></div>
         </div>
-        <q-separator></q-separator>
+        <q-separator />
         <div class="card__data">
           <div class="card__data-title">
             <span class="text-weight-bold">Licencia:</span>
@@ -85,7 +89,7 @@
             <span>XTR-9074</span>
           </div>
         </div>
-        <q-separator></q-separator>
+        <q-separator />
         <div class="card__data">
           <div class="card__data-title">
             <span class="text-weight-bold">Número de placa:</span>
@@ -98,6 +102,7 @@
     </q-card-section>
   </q-card>
 </template>
+
 <script setup>
 import { ref } from "vue";
 
@@ -110,12 +115,22 @@ const openForm = () => {
   emit("openForm");
 };
 </script>
+
 <style scoped>
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
 .card__data {
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 3px;
+  gap: 4px;
 }
 
 .card__data .card__data-title {
@@ -126,6 +141,12 @@ const openForm = () => {
 
 .card__icon {
   cursor: pointer;
+  background-color: var(--skip-shade-2-light);
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .card__header-info {
@@ -138,17 +159,5 @@ const openForm = () => {
   display: flex;
   align-items: center;
   min-width: 65%;
-}
-
-@media (max-width: 1024px) {
-  .q-carousel {
-    height: 30vh !important;
-  }
-}
-
-@media (max-width: 1024px) {
-  .card--fullscreen-carousel {
-    height: 100vh !important;
-  }
 }
 </style>
