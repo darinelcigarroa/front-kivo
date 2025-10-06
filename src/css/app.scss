@@ -36,3 +36,105 @@
   color: var(--homeText);
   padding: 10px;
 }
+
+// Paleta "Generic Gradient"
+$gradients: (
+  "gradient-1": $gradient-1,
+  "gradient-2": $gradient-2,
+  "gradient-3": $gradient-3,
+  "gradient-4": $gradient-4,
+  "gradient-5": $gradient-5,
+  "gradient-6": $gradient-6,
+);
+
+// Paleta "Spot Palette"
+$spots: (
+  "spot-1": $spot-1,
+  "spot-2": $spot-2,
+  "spot-3": $spot-3,
+  "spot-4": $spot-4,
+  "spot-5": $spot-4,
+  "spot-6": $spot-4,
+);
+
+// Paleta "Skip Shade Gradient"
+$skipShades: (
+  "skip-shade-1": $skip-shade-1,
+  "skip-shade-2": $skip-shade-2,
+  "skip-shade-3": $skip-shade-3,
+  "skip-shade-4": $skip-shade-4,
+);
+
+// Paleta "Skip Shade Gradient" - Versión Clara
+$skipShadesLight: (
+  "skip-shade-1-light": $skip-shade-1-light,
+  "skip-shade-2-light": $skip-shade-2-light,
+  "skip-shade-3-light": $skip-shade-3-light,
+  "skip-shade-4-light": $skip-shade-4-light,
+);
+
+// Generar clases .bg-* y .text-* para la paleta Gradient
+@each $name, $color in $gradients {
+  .bg-#{$name} {
+    background-color: $color !important;
+  }
+  .text-#{$name} {
+    color: $color !important;
+  }
+}
+
+// Generar clases .bg-* y .text-* para la paleta Spot
+@each $name, $color in $spots {
+  .bg-#{$name} {
+    background-color: $color !important;
+  }
+  .text-#{$name} {
+    color: $color !important;
+  }
+}
+
+// Generar clases .bg-* y .text-* para la paleta Skip Shade
+@each $name, $color in $skipShades {
+  .bg-#{$name} {
+    background-color: $color !important;
+  }
+  .text-#{$name} {
+    color: $color !important;
+  }
+}
+
+// Generar clases para la versión clara
+@each $name, $color in $skipShadesLight {
+  .bg-#{$name} {
+    background-color: $color !important;
+  }
+  .text-#{$name} {
+    color: $color !important;
+  }
+}
+
+// --- Generar clases para todas las versiones claras ---
+
+$lightPalettes: (
+  "gradient-1-light": $gradient-1-light,
+  "gradient-2-light": $gradient-2-light,
+  "gradient-3-light": $gradient-3-light,
+  "gradient-4-light": $gradient-4-light,
+  "gradient-5-light": $gradient-5-light,
+  "gradient-6-light": $gradient-6-light,
+  "spot-1-light": $spot-1-light,
+  "spot-2-light": $spot-2-light,
+  "spot-3-light": $spot-3-light,
+  "spot-4-light": $spot-4-light,
+  "spot-5-light": $spot-5-light,
+  "spot-6-light": $spot-6-light,
+);
+
+@each $name, $color in $lightPalettes {
+  .bg-#{$name} {
+    background-color: $color !important;
+  }
+  .text-#{$name} {
+    color: $color !important;
+  }
+}

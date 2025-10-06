@@ -1,160 +1,190 @@
 <template>
-  <q-card class="my-card-service-details">
-    <q-card-section
-      style="display: flex; justify-content: center; align-items: center"
-    >
-      <div class="my-card-service-details__content-img">
-        <q-img
-          class="my-card-service-details__img"
-          :src="`https://ui-avatars.com/api/?name=${client.avatar}&size=128&background=8B3B62&color=fff`"
-        />
+  <q-card class="service-details-card">
+    <!-- Botón de cierre añadido -->
+    <q-btn
+      unelevated
+      icon="close"
+      color="grey-3"
+      text-color="black"
+      round
+      dense
+      v-close-popup
+      class="close-btn"
+    />
+
+    <q-card-section class="text-center q-pt-lg">
+      <div style="position: relative; display: inline-block">
+        <q-avatar
+          size="72px"
+          color="primary"
+          text-color="white"
+          font-size="32px"
+        >
+          {{ getInitials(client.name) }}
+        </q-avatar>
+        <q-btn
+          round
+          color="white"
+          text-color="primary"
+          icon="fa-solid fa-location-dot"
+          size="sm"
+          style="position: absolute; bottom: -5px; right: -5px"
+          @click="showOnMap"
+        >
+          <q-tooltip>Ver ruta en el mapa</q-tooltip>
+        </q-btn>
       </div>
     </q-card-section>
-    <q-card-section class="q-mt-sm">
-      <q-expansion-item v-model="expandedDetails">
-        <template v-slot:header>
-          <q-item-section avatar>
-            <q-icon color="accent" name="fa-solid fa-layer-group" />
-          </q-item-section>
 
-          <q-item-section style="font-size: 1rem; padding: 0px">
-            Detalles del servicio
-          </q-item-section>
-        </template>
-        <q-card>
-          <q-card-section style="padding-left: 35px">
-            <q-item-label class="row">
-              <q-icon
-                class="q-px-xs icon-detail-service"
-                size="xs"
-                name="my_location"
-              ></q-icon>
-              <div class="info">
-                <span class="info-span">Origen: </span>
-                <span class="q-ml-xs data-span">{{ client.placeOrigin }}</span>
-              </div>
-            </q-item-label>
-            <q-item-label class="row">
-              <q-icon
-                class="q-px-xs icon-detail-service"
-                size="xs"
-                name="place"
-              ></q-icon>
-              <div class="info">
-                <span class="info-span">Destino: </span>
-                <span class="q-ml-xs data-span">{{
-                  client.placeDestination
-                }}</span>
-              </div>
-            </q-item-label>
-            <q-item-label class="row">
-              <q-icon
-                class="q-px-xs icon-detail-service"
-                size="xs"
-                name="fa-solid fa-car"
-              />
-              <div class="info">
-                <span class="info-span">Tipo de Transporte: </span>
-                <span class="q-ml-xs data-span">{{
-                  client.transport_type
-                }}</span>
-              </div>
-            </q-item-label>
-          </q-card-section>
-        </q-card>
-      </q-expansion-item>
-    </q-card-section>
     <q-card-section class="q-pt-none">
-      <q-expansion-item v-model="expandedArticles">
-        <template v-slot:header>
-          <q-item-section avatar>
-            <q-icon color="accent" name="fa-solid fa-list-check" />
-          </q-item-section>
+      <q-list separator>
+        <q-expansion-item
+          default-opened
+          header-class="text-weight-medium text-primary"
+          class="q-mb-sm"
+        >
+          <template v-slot:header>
+            <q-item-section avatar>
+              <q-icon color="primary" name="fa-solid fa-layer-group" />
+            </q-item-section>
 
-          <q-item-section style="font-size: 1rem; padding: 0px">
-            Lista de los artículos
-          </q-item-section>
-        </template>
+            <q-item-section class="text-black text-weight-medium">
+              Detalles del servicio
+            </q-item-section>
+          </template>
 
-        <q-card>
-          <q-card-section style="padding-left: 35px">
+          <div class="q-pa-md q-gutter-y-sm">
+            <div class="row items-center text-grey-8">
+              <q-icon
+                color="primary"
+                name="my_location"
+                class="q-mr-md"
+                size="sm"
+              />
+              <div>
+                <span class="text-weight-bold">Origen:</span>
+                {{ client.placeOrigin }}
+              </div>
+            </div>
+            <div class="row items-center text-grey-8">
+              <q-icon color="primary" name="place" class="q-mr-md" size="sm" />
+              <div>
+                <span class="text-weight-bold">Destino:</span>
+                {{ client.placeDestination }}
+              </div>
+            </div>
+            <div class="row items-center text-grey-8">
+              <q-icon
+                color="primary"
+                name="local_shipping"
+                class="q-mr-md"
+                size="sm"
+              />
+              <div>
+                <span class="text-weight-bold">Tipo de Transporte:</span>
+                {{ client.transport_type }}
+              </div>
+            </div>
+          </div>
+        </q-expansion-item>
+
+        <q-expansion-item header-class="text-weight-medium text-primary">
+          <template v-slot:header>
+            <q-item-section avatar>
+              <q-icon color="primary" name="fa-regular fa-rectangle-list" />
+            </q-item-section>
+
+            <q-item-section class="text-black text-weight-medium">
+              Lista de los artículos
+            </q-item-section>
+          </template>
+          <div class="q-pa-md">
             <q-chip
               v-for="(article, index) in client.detailsArticles"
               :key="index"
-              color="grey-4"
+              color="grey-3"
               text-color="dark"
+              class="q-ma-xs"
             >
-              <q-avatar color="primary" text-color="white"
-                ><span>{{ article.number }}</span></q-avatar
-              >
-              <div class="ellipsis">
-                <span>{{ article.name }}</span>
-              </div>
+              <q-avatar color="primary" text-color="white" size="28px">
+                {{ article.number }}
+              </q-avatar>
+              <div class="ellipsis">{{ article.name }}</div>
             </q-chip>
-          </q-card-section>
-        </q-card>
-      </q-expansion-item>
+          </div>
+        </q-expansion-item>
+      </q-list>
     </q-card-section>
-    <q-card-actions class="justify-around">
+
+    <q-card-actions class="flex justify-center">
       <q-btn
-        @click="showMapService"
-        round
-        padding="7px 7px"
-        icon="place"
-        color="primary"
-      >
-        <q-tooltip class="bg-accent">Ver ruta del servicio</q-tooltip>
-      </q-btn>
-      <q-btn
-        style="background: var(--gold); color: var(--letter)"
-        flat
+        unelevated
         rounded
-        label="Confirmar servicio"
+        color="primary"
+        label="Confirmar Servicio"
+        class="text-weight-medium"
+        icon="check_circle"
+        no-caps
       />
     </q-card-actions>
   </q-card>
 </template>
+
 <script setup>
-import { ref } from "vue";
-import { useMapStore } from "@/stores/google-map/map-store";
+import { toRef } from "vue";
 
-const mapStore = useMapStore();
-const props = defineProps(["client"]);
-const expandedDetails = ref(true);
-const expandedArticles = ref(false);
-const client = props.client;
+const props = defineProps({
+  client: {
+    type: Object,
+    required: true,
+  },
+});
 
-const showMapService = () => {
-  mapStore.showMap();
+const client = toRef(props, "client");
+
+const getInitials = (name) => {
+  if (!name) return "";
+  const nameParts = name.split(" ");
+  if (nameParts.length > 1) {
+    return `${nameParts[0][0]}${nameParts[1][0]}`.toUpperCase();
+  }
+  return name.substring(0, 2).toUpperCase();
+};
+
+const showOnMap = () => {
+  if (!client.value.placeOrigin || !client.value.placeDestination) {
+    // Opcional: manejar el caso en que no haya origen o destino
+    return;
+  }
+  const origin = encodeURIComponent(client.value.placeOrigin);
+  const destination = encodeURIComponent(client.value.placeDestination);
+  const url = `https://www.google.com/maps/dir/${origin}/${destination}`;
+  window.open(url, "_blank");
 };
 </script>
 
 <style scoped>
-.my-card-service-details {
-  border-radius: 10px;
-  min-width: 35%;
-  padding: 15px;
+.service-details-card {
+  width: 100%;
+  border-radius: 16px;
+  background-color: #f8f9fa;
 }
-.my-card-service-details__content-img {
-  width: 50%;
+
+.q-expansion-item {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
 }
-.my-card-service-details__img {
-  height: 15em;
-  border-radius: 15px;
+.service-details-card {
+  width: 100%;
+  border-radius: 16px;
+  background-color: #f8f9fa;
+  position: relative; /* Necesario para posicionar el botón de cierre */
 }
-.icon-detail-service {
-  color: var(--primary);
-}
-.info-span {
-  font-size: 15px;
-  font-weight: bold;
-  color: var(--dark);
-}
-.q-item__label {
-  display: flex;
-  align-items: center;
-}
-.data-span {
-  font-size: 15px;
+
+.close-btn {
+  position: absolute;
+  top: 8px;
+  right: 15px;
+  z-index: 1;
 }
 </style>

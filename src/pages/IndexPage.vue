@@ -1,5 +1,8 @@
 <template>
-  <q-page class="main-home" :class="{ active: isActive }">
+  <q-page
+    class="main-home"
+    :class="{ active: isActive, 'color-dinamic': isActive }"
+  >
     <div class="text-center q-pt-xl">
       <div>
         <span class="text-h6" style="font-size: 1.8em"
@@ -17,23 +20,19 @@
     </div>
     <div class="grid-container">
       <div class="left-section" :class="{ 'move-right': isActive }">
+        <!-- <img
+          src="@/assets/video/global-home-2.gif"
+          alt="Animación de logística global"
+          style="width: 90%; height: 90%; object-fit: cover"
+        /> -->
         <video
-          src="@/assets/video/global-home.mp4"
+          src="@/assets/video/global-home-3.mp4"
           autoplay
           muted
           loop
           playsinline
           style="width: 90%; height: 90%; object-fit: cover"
         ></video>
-        <!-- <div class="button-container">
-          <q-btn
-            unelevated
-            :label="labelButton"
-            color="primary"
-            class="submit"
-            @click="toggleMove"
-          />
-        </div> -->
       </div>
       <div class="right-section" :class="{ 'move-left': isActive }">
         <FormRequestRegister v-if="isActive" />
@@ -73,32 +72,32 @@ const codeValidation = () => {
 </script>
 
 <style scoped>
+.main-home {
+  /* Gradiente por defecto (lado derecho) */
+  background: linear-gradient(
+    149deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 72%,
+    rgba(224, 184, 204, 0.92) 100%
+  );
+  transition: background 1s ease-in-out;
+}
+
+.color-dinamic {
+  /* Gradiente cuando está activo (abajo a la izquierda) */
+  background: linear-gradient(
+    225deg,
+    /* Ángulo hacia abajo a la izquierda */ rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 72%,
+    rgba(224, 184, 204, 0.92) 100%
+  );
+}
+
 .underline {
   text-decoration: underline;
   font-size: 1.2em;
 }
 
-/* Animación sutil para llamar la atención */
-.attention-animate {
-  display: inline-block;
-  /* El ciclo total dura 5s y se repite infinitamente */
-  animation: spinX 10s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-  backface-visibility: hidden;
-}
-
-@keyframes spinX {
-  /* El giro ocurre en el primer 40% del tiempo (2s de 5s) */
-  0% {
-    transform: rotateY(0deg);
-  }
-  20% {
-    transform: rotateY(360deg);
-  }
-  /* Desde el 40% al 100% se mantiene quieto (pausa de 3s) */
-  100% {
-    transform: rotateY(360deg);
-  }
-}
 .grid-container {
   display: grid;
   grid-template-columns: 3fr 2fr;
@@ -131,7 +130,7 @@ const codeValidation = () => {
 }
 
 .right-section {
-  padding: 20px 40px 0 40px; /* Menos padding arriba */
+  padding: 20px 95px 0 0px; /* Menos padding arriba */
   display: flex;
   justify-content: center; /* <--- MODIFICADO */
   align-items: center;
@@ -140,7 +139,7 @@ const codeValidation = () => {
   position: relative;
   transition: transform 0.8s ease-in-out, clip-path 0.8s ease-in-out;
   height: 100%;
-  margin-left: -110px;
+  margin-left: -70px;
   overflow: hidden;
 }
 

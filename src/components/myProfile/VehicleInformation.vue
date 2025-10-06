@@ -1,98 +1,98 @@
 <template>
-  <q-card class="card row" flat bordered>
-    <q-card-section class="col-md-6 col-xs-12 card__content_carousel">
-      <q-carousel
-        height="100%"
-        swipeable
-        animated
-        arrows
-        navigation
-        infinite
-        autoplay
-        v-model="slide"
-        v-model:fullscreen="fullscreen"
-        :class="{ 'card--fullscreen-carousel': fullscreen }"
-        style="background: var(--card)"
-      >
-        <q-carousel-slide
-          style="border-radius: 20px"
-          :name="1"
-          img-src="https://images.unsplash.com/photo-1473994539470-288907e8d04b?q=80&w=2052&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        ></q-carousel-slide>
-        <q-carousel-slide
-          style="border-radius: 20px"
-          :name="2"
-          img-src="https://images.unsplash.com/photo-1518368273159-87a4efdc654f?q=80&w=1973&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        ></q-carousel-slide>
-        <q-carousel-slide
-          style="border-radius: 20px"
-          :name="3"
-          img-src="https://images.unsplash.com/photo-1518560998531-087edcb36c13?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        ></q-carousel-slide>
-        <template v-slot:control>
-          <q-carousel-control position="bottom-right" :offset="[18, 18]">
-            <q-btn
-              push
-              round
-              dense
-              color="primary"
-              text-color="white"
-              :icon="fullscreen ? 'fullscreen_exit' : 'fullscreen'"
-              @click="fullscreen = !fullscreen"
-            ></q-btn>
-          </q-carousel-control>
-        </template>
-      </q-carousel>
+  <q-card class="card" flat bordered>
+    <q-card-section class="col-12 q-pt-none q-px-md flex justify-between">
+      <span class="text-h5 q-ml-xs q-my-sm">Perfil del vehiculo</span>
+      <q-icon
+        @click="openForm"
+        class="card__icon flex align-center"
+        color="primary"
+        size="1.2em"
+        name="fa-solid fa-pen"
+      ></q-icon>
     </q-card-section>
-    <q-card-section class="col-md-6 col-xs-12">
-      <div class="card__header-info">
-        <span class="text-h5 q-ml-xs q-my-sm">Perfil del vehiculo</span>
-        <q-icon
-          @click="openForm"
-          class="card__icon"
-          color="primary"
-          size="1.5em"
-          name="fa-solid fa-pen-to-square"
-        ></q-icon>
+    <q-card-section class="row q-pa-none">
+      <div class="col-md-6 col-xs-12">
+        <q-carousel
+          height="100%"
+          swipeable
+          animated
+          arrows
+          navigation
+          infinite
+          autoplay
+          v-model="slide"
+          v-model:fullscreen="fullscreen"
+          :class="{ 'card--fullscreen-carousel': fullscreen }"
+        >
+          <q-carousel-slide
+            :name="1"
+            img-src="https://images.unsplash.com/photo-1529369627985-112c94382yg"
+          ></q-carousel-slide>
+          <q-carousel-slide
+            :name="2"
+            img-src="https://images.unsplash.com/photo-1518368273159-87a4efdc654f?q=80&w=1973&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          ></q-carousel-slide>
+          <q-carousel-slide
+            :name="3"
+            img-src="https://images.unsplash.com/photo-1518560998531-087edcb36c13?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          ></q-carousel-slide>
+          <template v-slot:control>
+            <q-carousel-control position="bottom-right" :offset="[18, 18]">
+              <q-btn
+                push
+                round
+                dense
+                color="primary"
+                text-color="white"
+                :icon="fullscreen ? 'fullscreen_exit' : 'fullscreen'"
+                @click="fullscreen = !fullscreen"
+              ></q-btn>
+            </q-carousel-control>
+          </template>
+        </q-carousel>
       </div>
-      <div class="card__data">
-        <div class="card__data-title">
-          <span class="text-weight-bold">Tipo de Vehículo:</span>
+      <div class="col-md-6 col-xs-12 q-pa-lg rounded-borders">
+        <div class="card__data">
+          <div class="card__data-title">
+            <span class="text-weight-bold">Tipo de Vehículo:</span>
+          </div>
+          <div class="card__data-value">
+            <span>Camioneta doble cabina alv</span>
+          </div>
         </div>
-        <div class="card__data-value">
-          <span>Camioneta doble cabina alv</span>
+        <q-separator></q-separator>
+        <div class="card__data">
+          <div class="card__data-title">
+            <span class="text-weight-bold">Marca:</span>
+          </div>
+          <div class="card__data-value">
+            <span>Cigarroa de Los Santos</span>
+          </div>
         </div>
-      </div>
-      <q-separator></q-separator>
-      <div class="card__data">
-        <div class="card__data-title">
-          <span class="text-weight-bold">Marca:</span>
+        <q-separator></q-separator>
+        <div class="card__data">
+          <div class="card__data-title">
+            <span class="text-weight-bold">Modelo:</span>
+          </div>
+          <div class="card__data-value"><span>Corolla</span></div>
         </div>
-        <div class="card__data-value"><span>Cigarroa de Los Santos</span></div>
-      </div>
-      <q-separator></q-separator>
-      <div class="card__data">
-        <div class="card__data-title">
-          <span class="text-weight-bold">Modelo:</span>
+        <q-separator></q-separator>
+        <div class="card__data">
+          <div class="card__data-title">
+            <span class="text-weight-bold">Licencia:</span>
+          </div>
+          <div class="card__data-value">
+            <span>XTR-9074</span>
+          </div>
         </div>
-        <div class="card__data-value"><span>Corolla</span></div>
-      </div>
-      <q-separator></q-separator>
-      <div class="card__data">
-        <div class="card__data-title">
-          <span class="text-weight-bold">Licencia:</span>
-        </div>
-        <div class="card__data-value">
-          <span>XTR-9074</span>
-        </div>
-      </div>
-      <q-separator></q-separator>
-      <div class="card__data">
-        <div class="card__data-title">
-          <span class="text-weight-bold">Número de placa:</span>
-        </div>
-        <div class="card__data-value">
-          <span>3C3C3C3C4FG567891</span>
+        <q-separator></q-separator>
+        <div class="card__data">
+          <div class="card__data-title">
+            <span class="text-weight-bold">Número de placa:</span>
+          </div>
+          <div class="card__data-value">
+            <span>3C3C3C3C4FG567891</span>
+          </div>
         </div>
       </div>
     </q-card-section>

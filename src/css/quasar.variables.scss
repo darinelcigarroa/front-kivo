@@ -10,8 +10,6 @@
   --positive: #4caf50; /* Verde */
   --negative: #ff0000; /* Rojo */
   --info: #fffdd0; /* Crema */
-  --oro: #d4af37; /* Oro */
-  --gold: #b0832a; /* Oro */
   --warning: #ffff00; /* Naranja */
   --letter: #fff;
   --homeText: #000;
@@ -34,4 +32,49 @@ $oro: #d4af37; /* Oro */
 $warning: #ffff00; /* Amarillo */
 $letter: #fff;
 $card: #ffffff;
-$gold: #b0832a; /* Oro */
+
+// Paleta de colores "Generic Gradient"
+$gradient-1: #b8114c;
+$gradient-2: #9d2a6d;
+$gradient-3: #763e7f;
+$gradient-4: #4d487e;
+$gradient-5: #314b6e;
+$gradient-6: #2f4858;
+
+// Paleta de colores "Spot Palette"
+$spot-1: #b8114c;
+$spot-2: #c47c87;
+$spot-3: #ffe3ea;
+$spot-4: #60baae;
+$spot-5: #c2fcf3;
+$spot-6: #4a8179;
+
+// Paleta de colores "Skip Shade Gradient"
+$skip-shade-1: #b8114c;
+$skip-shade-2: #de5696;
+$skip-shade-3: #f891e0;
+$skip-shade-4: #ffcdff;
+
+// Paleta de colores "Skip Shade Gradient" - Versión Clara
+$skip-shade-1-light: lighten($skip-shade-1, 50%);
+$skip-shade-2-light: lighten($skip-shade-2, 50%);
+$skip-shade-3-light: lighten($skip-shade-3, 50%);
+$skip-shade-4-light: lighten($skip-shade-4, 50%);
+
+// --- VERSIONES CLARAS DE LAS PALETAS ---
+
+// Generic Gradient - Light
+$gradient-1-light: lighten($gradient-1, 50%);
+$gradient-2-light: lighten($gradient-2, 50%);
+$gradient-3-light: lighten($gradient-3, 50%);
+$gradient-4-light: lighten($gradient-4, 50%);
+$gradient-5-light: lighten($gradient-5, 50%);
+$gradient-6-light: lighten($gradient-6, 50%);
+
+// Spot Palette - Light
+$spot-1-light: lighten($spot-1, 50%);
+$spot-2-light: lighten($spot-2, 50%);
+$spot-3-light: lighten($spot-3, 50%); // Ya es claro, se aclara poco
+$spot-4-light: lighten($spot-4, 40%);
+$spot-5-light: lighten($spot-5, 50%); // Ya es claro, se aclara poco
+$spot-6-light: lighten($spot-6, 50%);

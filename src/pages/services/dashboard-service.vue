@@ -1,222 +1,365 @@
 <template>
-  <q-page class="q-pa-md">
-    <div class="my-services">
-      <!-- Primera fila: contenedor de servicios -->
-      <div class="service-container">
-        <div class="card-income">
-          <div class="icon-title">
-            <q-icon name="attach_money" size="32px" color="green" />
-          <div class="text-h6">INGRESOS</div>
-        </div>
-          <div class="q-mt-xs">
-            <div class="text-subtitle2">Ingreso de Hoy:</div>
-            <div class="text-h5">{{ todayIncome }}</div>
-            <!-- Monto de hoy -->
-          </div>
-
-          <div class="q-mt-xs">
-            <div class="text-subtitle2">Ingreso de Ayer:</div>
-            <div class="text-h5">{{ yesterdayIncome }}</div>
-            <!-- Monto de ayer -->
-          </div>
-
-          <!-- Sección de la diferencia porcentual con barra de progreso -->
-        <div class="q-mt-md">
-          <div class="text-subtitle2 text-bold">Diferencia:</div>
-          <q-linear-progress
-            :value="percentageDifference / 100"
-            color="green"
-            track-color="lightgrey"
-            :size="20"
-            rounded
-            class="q-mt-sm"
-          />
-          <div
-            class="percentage-text q-mt-sm"
-            :class="{
-              'text-positive': percentageDifference > 0,
-              'text-negative': percentageDifference < 0,
-            }"
-          >
-            {{ percentageDifferenceText }}
+  <q-page class="q-pa-md" style="background-color: #f8f9fa">
+    <div class="row q-col-gutter-lg q-mb-lg">
+      <div class="col-12 col-sm-6 col-md-3">
+        <q-card flat bordered class="full-height">
+          <q-card-section>
+            <div class="row justify-between items-start">
+              <div class="text-grey-10">Customers</div>
+              <q-avatar
+                size="40px"
+                font-size="24px"
+                color="skip-shade-1-light"
+                text-color="skip-shade-1"
+                icon="people_alt"
+              />
             </div>
-          </div>
-        </div>
-        <!-- card de ingresos mensuales -->
-        <div class="card-sale">
-          <div class="icon-title">
-            <q-icon name="attach_money" size="32px" color="green" />
-          <div class="text-h6">INGRESO MENSUAL</div>
-        </div>
-          <div class="q-mt-xs">
-            <div class="text-subtitle2">Ingreso de este Mes:</div>
-            <div class="text-h5">{{ currentMonthIncome }}</div>
-            <!-- Ingreso del mes actual -->
-          </div>
-
-          <div class="q-mt-xs">
-            <div class="text-subtitle2">Ingreso del Mes Anterior:</div>
-            <div class="text-h5">{{ previousMonthIncome }}</div>
-            <!-- Ingreso del mes anterior -->
-          </div>
-
-          <!-- Diferencia porcentual con barra de progreso -->
-        <div class="q-mt-md">
-          <div class="text-subtitle2 text-bold">Diferencia:</div>
-          <q-linear-progress
-            :value="monthlyPercentageDifference / 100"
-            color="green"
-            track-color="lightgrey"
-            :size="20"
-            rounded
-            class="q-mt-sm"
-          />
-          <div
-            class="percentage-text q-mt-sm"
-            :class="{
-              'text-positive': monthlyPercentageDifference > 0,
-              'text-negative': monthlyPercentageDifference < 0,
-            }"
-          >
-            {{ monthlyPercentageDifferenceText }}
+            <div class="text-h4 text-weight-bolder q-mt-sm">1.456</div>
+            <div class="text-positive row items-center q-mt-sm">
+              <q-icon name="arrow_upward" size="xs" />
+              <span class="text-body2 q-ml-xs">+6.5% Since last week</span>
             </div>
-          </div>
-        </div>
-        <div class="card-annual-sale">Clientes</div>
+          </q-card-section>
+        </q-card>
+      </div>
+      <div class="col-12 col-sm-6 col-md-3">
+        <q-card flat bordered class="full-height">
+          <q-card-section>
+            <div class="row justify-between items-start">
+              <div class="text-grey-10">Revenue</div>
+              <q-avatar
+                size="40px"
+                font-size="24px"
+                color="spot-6-light"
+                text-color="spot-6"
+                icon="monetization_on"
+              />
+            </div>
+            <div class="text-h4 text-weight-bolder q-mt-sm">$3.345</div>
+            <div class="text-negative row items-center q-mt-sm">
+              <q-icon name="arrow_downward" size="xs" />
+              <span class="text-body2 q-ml-xs">-0.10% Since last week</span>
+            </div>
+          </q-card-section>
+        </q-card>
+      </div>
+      <div class="col-12 col-sm-6 col-md-3">
+        <q-card flat bordered class="full-height">
+          <q-card-section>
+            <div class="row justify-between items-start">
+              <div class="text-grey-10">Profit</div>
+              <q-avatar
+                size="40px"
+                font-size="24px"
+                color="gradient-3-light"
+                text-color="gradient-3"
+                icon="inventory"
+              />
+            </div>
+            <div class="text-h4 text-weight-bolder q-mt-sm">60%</div>
+            <div class="text-negative row items-center q-mt-sm">
+              <q-icon name="arrow_downward" size="xs" />
+              <span class="text-body2 q-ml-xs">-0.2% Since last week</span>
+            </div>
+          </q-card-section>
+        </q-card>
+      </div>
+      <div class="col-12 col-sm-6 col-md-3">
+        <q-card flat bordered class="full-height">
+          <q-card-section>
+            <div class="row justify-between items-start">
+              <div class="text-grey-10">Invoices</div>
+              <q-avatar
+                size="40px"
+                font-size="24px"
+                color="indigo-1"
+                text-color="indigo-5"
+                icon="receipt_long"
+              />
+            </div>
+            <div class="text-h4 text-weight-bolder q-mt-sm">1.135</div>
+            <div class="row items-center q-mt-sm" style="color: #6366f1">
+              <q-icon name="arrow_upward" size="xs" />
+              <span class="text-body2 q-ml-xs">+11.5% Since last week</span>
+            </div>
+          </q-card-section>
+        </q-card>
+      </div>
+    </div>
+
+    <div class="row q-col-gutter-lg q-mb-lg">
+      <div class="col-12 col-lg-5">
+        <q-card flat bordered>
+          <q-card-section>
+            <div class="row justify-between items-center">
+              <div class="text-h6">Invoice Statistics</div>
+              <q-btn flat round icon="more_horiz" color="grey-7" />
+            </div>
+          </q-card-section>
+          <q-card-section class="row items-center justify-around">
+            <div class="col-6 q-gutter-y-md">
+              <div>
+                <div class="row items-center">
+                  <q-badge rounded color="gradient-1" class="q-mr-sm" />
+                  <span class="text-grey-7">Total Paid</span>
+                </div>
+                <div class="text-h6 text-weight-bold q-ml-md">234</div>
+              </div>
+              <div>
+                <div class="row items-center">
+                  <q-badge rounded color="gradient-2" class="q-mr-sm" />
+                  <span class="text-grey-7">Total Overdue</span>
+                </div>
+                <div class="text-h6 text-weight-bold q-ml-md">514</div>
+              </div>
+              <div>
+                <div class="row items-center">
+                  <q-badge rounded color="gradient-3" class="q-mr-sm" />
+                  <span class="text-grey-7">Total Unpaid</span>
+                </div>
+                <div class="text-h6 text-weight-bold q-ml-md">345</div>
+              </div>
+            </div>
+            <div class="col-6 flex justify-center q-mb-md">
+              <apexchart
+                type="donut"
+                height="215"
+                :options="invoiceChart.options"
+                :series="invoiceChart.series"
+              ></apexchart>
+            </div>
+          </q-card-section>
+        </q-card>
       </div>
 
-      <!-- Segunda fila: tabla de clientes -->
-      <div class="table-container">
-        <div class="header-container">
-          <div class="card-table text-h6 text-grey-8">Clientes</div>
+      <div class="col-12 col-lg-7">
+        <q-card flat bordered>
+          <q-card-section>
+            <div class="row justify-between items-center">
+              <div class="text-h6">Sales Analytics</div>
+              <q-btn flat round icon="more_horiz" color="grey-7" />
+            </div>
+          </q-card-section>
+          <q-card-section>
+            <apexchart
+              type="area"
+              height="215"
+              :options="salesChart.options"
+              :series="salesChart.series"
+            ></apexchart>
+          </q-card-section>
+        </q-card>
+      </div>
+    </div>
 
-          <div class="filters-container">
-            <q-input
-              v-model="search"
-              placeholder="Buscar por nombre o email"
-              debounce="300"
-              outlined
-              dense
-              class="q-mb-md"
-            />
+    <div class="row">
+      <div class="col-12">
+        <q-card flat bordered>
+          <q-card-section>
+            <div class="row justify-between items-center">
+              <div class="text-h6">Recent Invoices</div>
+              <!-- Reemplazado el botón por un campo de búsqueda -->
+              <q-input
+                outlined
+                dense
+                debounce="300"
+                v-model="filter"
+                placeholder="Search"
+                style="width: 300px"
+              >
+                <template v-slot:append>
+                  <q-icon name="search" />
+                </template>
+              </q-input>
+            </div>
+          </q-card-section>
+          <q-separator />
+          <q-card-section class="q-pa-none">
+            <q-table
+              :rows="rows"
+              :columns="columns"
+              row-key="id"
+              flat
+              :rows-per-page-options="[10, 50, 100]"
+              :filter="filter"
+            >
+              <!-- Plantilla para la columna 'name' -->
+              <template v-slot:body-cell-name="props">
+                <q-td :props="props">
+                  <div class="row items-center no-wrap">
+                    <q-avatar size="32px" class="q-mr-md">
+                      <!-- Corregido: ahora es props.row.avatar -->
+                      <img :src="props.row.avatar" />
+                    </q-avatar>
+                    <!-- Corregido: ahora es props.row.name -->
+                    <span>{{ props.row.name }}</span>
+                  </div>
+                </q-td>
+              </template>
 
-            <q-select
-              v-model="selectedStatus"
-              :options="statusOptions"
-              placeholder="Filtrar por estado"
-              outlined
-              dense
-              class="q-mb-md"
-              clearable
-              @click="openStatusSelect"
-            />
-          </div>
-        </div>
+              <!-- Plantilla para la columna 'contact' -->
+              <template v-slot:body-cell-contact="props">
+                <q-td :props="props">
+                  <!-- Corregido: ahora es props.row.contact -->
+                  <span>{{ props.row.contact }}</span>
+                </q-td>
+              </template>
 
-        <q-table
-          :rows="filteredRows"
-          :columns="columns"
-          row-key="name"
-          :rows-per-page-options="[5, 10, 25]"
-          :pagination="pagination"
-          @request="onRequest"
-          :loading="loading"
-          flat
-          bordered
-        >
-          <template v-slot:body-cell-status="props">
-            <q-td :props="props">
-              {{ props.row.status }}
-            </q-td>
-          </template>
+              <!-- Plantilla para la columna 'vehicle' -->
+              <template v-slot:body-cell-vehicle="props">
+                <q-td :props="props">
+                  <!-- Corregido: ahora es props.row.vehicle -->
+                  <span>{{ props.row.vehicle }}</span>
+                </q-td>
+              </template>
 
-          <template v-slot:body-cell-actions="props">
-            <q-td :props="props">
-              <q-btn color="primary" icon="visibility" flat />
-              <q-btn color="blue-10" icon="edit" flat />
-              <q-btn color="negative" icon="delete" flat />
-            </q-td>
-          </template>
-        </q-table>
+              <template v-slot:body-cell-status="props">
+                <q-td :props="props">
+                  <q-chip
+                    :color="getStatusColor(props.value).bg"
+                    :text-color="getStatusColor(props.value).text"
+                    size="sm"
+                    class="text-weight-bold"
+                  >
+                    {{ props.value }}
+                  </q-chip>
+                </q-td>
+              </template>
+              <template v-slot:body-cell-price="props">
+                <q-td :props="props" class="text-weight-bold">
+                  ${{ props.value }}
+                </q-td>
+              </template>
+            </q-table>
+          </q-card-section>
+        </q-card>
       </div>
     </div>
   </q-page>
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
-// codigo de script de la parte de ingresos por dia
-// Funciones para simular ingresos
-const getTodayIncome = () => {
-  // Simula el ingreso de hoy
-  return Math.floor(Math.random() * 700) + 300; // Genera un número entre 300 y 1000
+import { ref } from "vue";
+import { colors } from "quasar";
+
+const filter = ref("");
+
+// --- DATOS Y CONFIGURACIÓN DE LA GRÁFICA DE VENTAS (LINEA) ---
+const salesChart = {
+  series: [
+    {
+      name: "Sales",
+      data: [
+        4000, 3000, 5000, 4500, 6000, 8500, 7000, 6000, 5500, 6500, 7500, 8000,
+      ],
+    },
+  ],
+  options: {
+    chart: {
+      height: 250,
+      type: "area",
+      toolbar: { show: false },
+    },
+    colors: ["#7a1b4a"],
+    dataLabels: { enabled: false },
+    stroke: { curve: "smooth", width: 2 },
+    fill: {
+      type: "gradient",
+      gradient: {
+        shadeIntensity: 1,
+        opacityFrom: 0.2,
+        opacityTo: 0.1,
+        stops: [0, 90, 100],
+      },
+    },
+    xaxis: {
+      categories: [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "Mei",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Des",
+      ],
+      labels: { style: { colors: "#A0AEC0" } },
+      axisBorder: { show: false },
+      axisTicks: { show: false },
+    },
+    yaxis: {
+      labels: {
+        style: { colors: "#A0AEC0" },
+        formatter: (val) => `${val / 1000}k`,
+      },
+    },
+    grid: {
+      borderColor: "#E2E8F0",
+      strokeDashArray: 4,
+      xaxis: { lines: { show: false } },
+    },
+    tooltip: { enabled: true },
+    markers: {
+      size: 5,
+      colors: "#fff",
+      strokeColors: colors.getPaletteColor("spot-2"),
+      strokeWidth: 2,
+      hover: {
+        size: 7,
+      },
+    },
+  },
 };
 
-const getYesterdayIncome = () => {
-  // Simula el ingreso de ayer
-  return Math.floor(Math.random() * 700) + 300; // Genera un número entre 300 y 1000
-};
-
-// Variables reactivas para los ingresos
-const todayIncome = ref(getTodayIncome());
-const yesterdayIncome = ref(getYesterdayIncome());
-
-// Calcular el porcentaje de diferencia
-const percentageDifference = computed(() => {
-  const difference = todayIncome.value - yesterdayIncome.value;
-  const percentage = (difference / yesterdayIncome.value) * 100;
-  return percentage.toFixed(2); // Limitar a 2 decimales
+// --- DATOS Y CONFIGURACIÓN DE LA GRÁFICA DE FACTURAS (DONA) ---
+const invoiceChart = ref({
+  series: [234, 514, 345], // Paid, Overdue, Unpaid
+  options: {
+    chart: { type: "donut" },
+    labels: ["Total Paid", "Total Overdue", "Total Unpaid"],
+    colors: [
+      colors.getPaletteColor("gradient-1"),
+      colors.getPaletteColor("gradient-2"),
+      colors.getPaletteColor("gradient-3"),
+    ],
+    plotOptions: {
+      pie: {
+        donut: {
+          size: "60%",
+          labels: {
+            show: true,
+            total: {
+              show: true,
+              showAlways: true,
+              label: "Total",
+              fontSize: "22px",
+              fontWeight: 600,
+              color: "#373d3f",
+            },
+            value: {
+              show: true,
+              fontSize: "16px",
+              color: "#A0AEC0",
+              offsetY: 8,
+              formatter: function (val) {
+                return val;
+              },
+            },
+          },
+        },
+      },
+    },
+    dataLabels: { enabled: false },
+    legend: { show: false },
+  },
 });
 
-// Texto para mostrar la diferencia porcentual
-const percentageDifferenceText = computed(() => {
-  const diff = percentageDifference.value;
-  return diff > 0 ? `+${diff}% más que ayer` : `${diff}% menos que ayer`;
-});
-
-// codigo de script de la parte de ingresos mensuales
-// Funciones para simular ingresos mensuales
-const getCurrentMonthIncome = () => {
-  // Simula el ingreso del mes actual
-  return Math.floor(Math.random() * 20000) + 10000; // Genera un número entre 10,000 y 30,000
-};
-
-const getPreviousMonthIncome = () => {
-  // Simula el ingreso del mes anterior
-  return Math.floor(Math.random() * 20000) + 10000; // Genera un número entre 10,000 y 30,000
-};
-
-// Variables reactivas para los ingresos mensuales
-const currentMonthIncome = ref(getCurrentMonthIncome());
-const previousMonthIncome = ref(getPreviousMonthIncome());
-
-// Calcular el porcentaje de diferencia mensual
-const monthlyPercentageDifference = computed(() => {
-  const difference = currentMonthIncome.value - previousMonthIncome.value;
-  const percentage = (difference / previousMonthIncome.value) * 100;
-  return percentage.toFixed(2); // Limitar a 2 decimales
-});
-
-// Texto para mostrar la diferencia porcentual mensual
-const monthlyPercentageDifferenceText = computed(() => {
-  const diff = monthlyPercentageDifference.value;
-  return diff > 0
-    ? `+${diff}% más que el mes anterior`
-    : `${diff}% menos que el mes anterior`;
-});
-
-const statusOptions = [
-  { label: "Activo", value: "Activo" },
-  { label: "Pendiente", value: "Pendiente" },
-  { label: "Cancelado", value: "Cancelado" },
-  { label: "Finalizado", value: "Finalizado" },
-];
-// Variables reactivas
-const search = ref("");
-const selectedStatus = ref(null);
-
-// Definir columnas
-const columns = ref([
+// --- DATOS Y CONFIGURACIÓN DE LA TABLA ---
+const columns = [
   {
     name: "name",
     label: "Nombre",
@@ -225,23 +368,23 @@ const columns = ref([
     sortable: true,
   },
   {
-    name: "email",
-    label: "Email",
-    field: "email",
+    name: "contact",
+    label: "Contacto",
+    field: "contact",
     align: "left",
     sortable: true,
   },
   {
-    name: "cuota",
-    label: "Cuota",
-    field: "cuota",
-    align: "left",
-    sortable: true,
-  },
-  {
-    name: "vehiculo",
+    name: "vehicle",
     label: "Vehiculo",
-    field: "vehiculo",
+    field: "vehicle",
+    align: "left",
+    sortable: true,
+  },
+  {
+    name: "orderDate",
+    label: "Order Date",
+    field: "orderDate",
     align: "left",
     sortable: true,
   },
@@ -249,213 +392,120 @@ const columns = ref([
     name: "status",
     label: "Status",
     field: "status",
-    align: "left",
-    sortable: false, // No es necesario ordenar por esta columna
+    align: "center",
+    sortable: true,
   },
+  {
+    name: "price",
+    label: "Price",
+    field: "price",
+    align: "left",
+    sortable: true,
+  },
+];
 
-  { name: "actions", label: "Acciones", field: "actions", align: "left" },
-]);
-
-// Definir filas (datos de ejemplo)
 const rows = ref([
   {
-    name: "John Doe",
-    email: "john@example.com",
-    cuota: "$500",
-    vehiculo: "Hummer EV",
-    status: "Pendiente",
+    id: 1,
+    name: "Eren Yaeger",
+    avatar: "https://cdn.quasar.dev/img/avatar1.jpg",
+    contact: "eren.y@example.com",
+    vehicle: "Van",
+    orderDate: "21/07/2022 08:21",
+    status: "Paid",
+    price: 101,
   },
   {
-    name: "Jane Smith",
-    email: "jane@example.com",
-    cuota: "$500",
-    vehiculo: "RAM 2500",
-    status: "Finalizado",
+    id: 2,
+    name: "Levi Ackerman",
+    avatar: "https://cdn.quasar.dev/img/avatar2.jpg",
+    contact: "levi.a@example.com",
+    vehicle: "Truck",
+    orderDate: "21/07/2022 08:21",
+    status: "Pending",
+    price: 144,
   },
   {
-    name: "Bob Johnson",
-    email: "bob@example.com",
-    cuota: "$500",
-    vehiculo: "Rivian R1T",
-    status: "Cancelado",
+    id: 3,
+    name: "Rainer Brown",
+    avatar: "https://cdn.quasar.dev/img/avatar3.jpg",
+    contact: "rainer.b@example.com",
+    vehicle: "Car",
+    orderDate: "21/07/2022 08:21",
+    status: "Paid",
+    price: 121,
   },
   {
-    name: "Alice Walker",
-    email: "alice@example.com",
-    cuota: "$500",
-    vehiculo: "Rolls-Royce Cullinan",
-    status: "Pendiente",
-  },
-  {
-    name: "Chris Evans",
-    email: "chris@example.com",
-    cuota: "$500",
-    vehiculo: "Cadillac Escalade",
-    status: "finalziado",
-  },
-  {
-    name: "Bruce Wayne",
-    email: "bruce@example.com",
-    cuota: "$500",
-    vehiculo: "BMW X7",
-    status: "Cancelado",
-  },
-  {
-    name: "Clark Kent",
-    email: "clark@example.com",
-    cuota: "$500",
-    vehiculo: "Mercedes Clase G",
-    status: "Pendiente",
+    id: 4,
+    name: "Historia Reiss",
+    avatar: "https://cdn.quasar.dev/img/avatar4.jpg",
+    contact: "historia.r@example.com",
+    vehicle: "MiniVan",
+    orderDate: "21/07/2022 08:21",
+    status: "Overdue",
+    price: 300,
   },
 ]);
 
-// Computed para filtrar filas
-const filteredRows = computed(() => {
-  return rows.value.filter((row) => {
-    const matchesSearch =
-      row.name.toLowerCase().includes(search.value.toLowerCase()) ||
-      row.email.toLowerCase().includes(search.value.toLowerCase());
-    const matchesStatus = selectedStatus.value
-      ? row.status === selectedStatus.value
-      : true;
-    return matchesSearch && matchesStatus;
-  });
-});
-
-// Variables reactivas para paginación
-const pagination = ref({
-  page: 1,
-  rowsPerPage: 5,
-  sortBy: "name",
-  descending: false,
-});
-const loading = ref(false);
-
-// Método para manejar la solicitud de cambio de paginación, orden, etc.
-const onRequest = (props) => {
-  const { page, rowsPerPage, sortBy, descending } = props.pagination;
-  pagination.value.page = page;
-  pagination.value.rowsPerPage = rowsPerPage;
-  pagination.value.sortBy = sortBy;
-  pagination.value.descending = descending;
-  loading.value = false; // Simulación de carga (puede ser dinámico si se obtiene de una API)
+// --- FUNCIÓN AUXILIAR PARA LOS COLORES DEL ESTADO ---
+const getStatusColor = (status) => {
+  switch (status) {
+    case "Paid":
+      return { bg: "green-1", text: "green-8" };
+    case "Pending":
+      return { bg: "yellow-1", text: "yellow-8" };
+    case "Overdue":
+      return { bg: "red-1", text: "red-8" };
+    default:
+      return { bg: "grey-2", text: "grey-8" };
+  }
 };
-// Método para abrir el select al hacer clic
-const openStatusSelect = () => {
-  // Este método se activa al hacer clic en el filtro, lo que permite que el menú se despliegue.
-};
-//borrar apartir de aqui
 </script>
+
 <style scoped>
-.header-container {
-  display: flex;
-  justify-content: space-between; /* Para espaciar elementos */
-  align-items: center; /* Alinear verticalmente */
-}
-.filters-container {
-  display: flex;
-  gap: 1rem; /* Espaciado entre los elementos del filtro */
-  margin-left: auto; /* Empujar el contenedor hacia la derecha */
+.q-card {
+  border-radius: 8px;
 }
 
-/* El contenedor principal que define el grid con áreas */
-.my-services {
+.charts-container {
   display: grid;
-  grid-template-rows: auto 1fr; /* Dos filas: una para los servicios y otra para la tabla */
-  grid-template-areas:
-    "services"
-    "table";
-  grid-gap: 20px;
-  width: 100%;
-  height: 100%; /* Asegurar que todo ocupe el espacio vertical disponible */
+  grid-template-columns: 1fr 2fr;
+  gap: 24px;
+  margin: 0 auto;
+  align-items: stretch;
 }
 
-/* Primera fila: contenedor de servicios */
-.service-container {
-  grid-area: services; /* Asignar esta área a los servicios */
+/* Media query para pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+  .charts-container {
+    /* En pantallas pequeñas, los gráficos se apilan uno sobre otro */
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Nuevo estilo para el contenedor del gráfico de dona */
+.donut-chart-container {
   display: flex;
-  flex-direction: row; /* Distribuir los contenedores en fila */
-  justify-content: space-around;
-  height: 100%;
-}
-
-.service-container > div {
-  background: var(--card);
-  padding: 20px;
-  border-radius: 1rem;
-  padding: 1rem !important;
-  margin-right: 10px;
-  border: 0.1px solid #d6d6d6e1;
-  flex: 1; /* Asegurar que los contenedores se distribuyan proporcionalmente */
-}
-
-.icon-title {
-  display: flex; /* Alinear ícono y texto en fila */
-  align-items: center; /* Alinear verticalmente */
-}
-
-.q-ml-sm {
-  margin-left: 10px; /* Margen a la izquierda del texto para separar del ícono */
-}
-
-.text-subtitle2 {
-  font-weight: 500;
-  color: #555;
-}
-
-.text-h5 {
-  font-weight: bold;
-  color: #333;
-}
-
-.text-positive {
-  color: green;
-}
-
-.text-negative {
-  color: red;
-}
-
-/* Espaciado adicional */
-.q-mt-xs {
-  margin-top: 10px;
-}
-
-.q-mt-md {
-  margin-top: 20px;
-}
-.percentage-text {
-  text-align: center;
-  font-weight: bold;
-  font-size: 1.1em;
-}
-
-/* Segunda fila: la tabla de clientes */
-.table-container {
-  grid-area: table; /* Asignar esta área a la tabla */
-  background: #fff;
-  padding: 20px;
-  border-radius: 1rem;
-  padding: 1rem !important;
-  border: 0.1px solid #d6d6d6e1;
-  display: block;
-  width: 100%; /* La tabla debe ocupar todo el ancho disponible */
-}
-
-.q-tabs {
-  width: 40%;
-  border-radius: 15px;
-}
-
-.my-service-headed {
-  display: flex;
-  justify-content: center;
   align-items: center;
-  width: 100%;
-  margin-bottom: 10px;
+  gap: 16px;
 }
 
-.q-input {
-  margin-bottom: 16px;
+/* Estilo para la leyenda del gráfico de dona */
+.legend-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Estilo para cada ítem de la leyenda */
+.legend-item {
+  display: flex;
+  align-items: center;
+}
+
+/* Estilo para el contenedor del gráfico dentro de la tarjeta */
+.chart-wrapper {
+  flex-grow: 1;
+  min-width: 0; /* Necesario para que flexbox no se desborde */
 }
 </style>

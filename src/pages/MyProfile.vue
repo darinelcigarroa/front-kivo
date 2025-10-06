@@ -21,7 +21,9 @@
         </CustomCardProfile>
       </div>
     </div>
+
     <FormBasicInformation v-model="showFormDataBasic"></FormBasicInformation>
+
     <FormVehicleInformation
       v-model="showFormVehicleInformation"
     ></FormVehicleInformation>
@@ -52,6 +54,7 @@ const openFormDataBasic = () => {
 };
 
 const openFormVehicle = () => {
+  console.log("ok");
   showFormVehicleInformation.value = true;
 };
 </script>

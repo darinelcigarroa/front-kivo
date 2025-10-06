@@ -161,9 +161,6 @@ const drawerClick = () => {
 body {
   font-family: "FontDefault", sans-serif;
 }
-.q-page {
-  background: var(--general);
-}
 
 .logo {
   width: 110px;

@@ -236,9 +236,12 @@ const onLoad = (index, done) => {
 
 .content-card {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  padding: 5px;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 16px;
+  padding: 16px;
+  /* He añadido un relleno inferior más generoso */
+  padding-bottom: 100px;
+  place-items: center;
 }
 
 .scroll-indicator {
@@ -259,22 +262,15 @@ const onLoad = (index, done) => {
   animation: scrollIndicator 1.5s infinite;
   z-index: 1000;
 }
+
 @media ((min-width: 0px) and (max-width: 575px)) {
   .content-card {
     grid-template-columns: 1fr;
-    justify-items: center;
-    justify-content: center;
-    /* gap: 20px; */
-  }
-  .content-card-mini {
-    grid-template-columns: 1fr;
-    /* background: rebeccapurple; */
   }
 }
 @media (max-width: 576px) {
   .content-card-mini {
     grid-template-columns: 1fr;
-    /* background: rebeccapurple; */
   }
 }
 

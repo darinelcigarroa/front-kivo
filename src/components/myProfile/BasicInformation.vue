@@ -1,56 +1,58 @@
 <template>
-  <q-card
-    class="card row"
-    flat
-    bordered
-  >
-    <q-card-section class="col-md-5 col-xs-12 q-py-sm card__content-avatar">
-      <q-img
-        class="card__img"
-        src="https://fastly.picsum.photos/id/64/4326/2884.jpg?hmac=9_SzX666YRpR_fOyYStXpfSiJ_edO3ghlSRnH2w09Kg"
-      ></q-img>
+  <q-card class="card" flat bordered>
+    <q-card-section
+      class="col-12 q-pt-md q-px-md flex justify-between items-center"
+    >
+      <span class="text-h5">Información básica</span>
+      <q-icon
+        @click="openForm"
+        class="card__icon"
+        color="primary"
+        size="1.2em"
+        name="fa-solid fa-pen"
+      ></q-icon>
     </q-card-section>
-    <q-card-section class="col-md-7 col-xs-12 card__info">
-      <div class="card__header-info">
-        <span class="text-h5 q-ml-xs q-my-sm">Información básica</span>
-        <q-icon
-          @click="openForm"
-          class="card__icon"
-          color="primary"
-          size="1.5em"
-          name="fa-solid fa-pen-to-square"
-        ></q-icon>
+    <q-card-section class="row items-stretch">
+      <div class="col-md-5 col-xs-12 q-pa-md">
+        <q-img
+          class="card__img"
+          src="https://fastly.picsum.photos/id/64/4326/2884.jpg?hmac=9_SzX666YRpR_fOyYStXpfSiJ_edO3ghlSRnH2w09Kg"
+        ></q-img>
       </div>
-      <div class="card__data">
-        <div class="card__data-title">
-          <span class="text-weight-bold">Nombre:</span>
+      <div class="col-md-7 col-xs-12 column q-pa-md">
+        <div class="card__data">
+          <div class="card__data-title">
+            <span class="text-weight-bold">Nombre:</span>
+          </div>
+          <div class="card__data-value"><span>Darinel</span></div>
         </div>
-        <div class="card__data-value"><span>Darinel</span></div>
-      </div>
-      <q-separator></q-separator>
-      <div class="card__data">
-        <div class="card__data-title">
-          <span class="text-weight-bold">Apellidos:</span>
+        <q-separator class="q-my-sm" />
+        <div class="card__data">
+          <div class="card__data-title">
+            <span class="text-weight-bold">Apellidos:</span>
+          </div>
+          <div class="card__data-value">
+            <span>Cigarroa de Los Santos</span>
+          </div>
         </div>
-        <div class="card__data-value"><span>Cigarroa de Los Santos</span></div>
-      </div>
-      <q-separator></q-separator>
-      <div class="card__data">
-        <div class="card__data-title">
-          <span class="text-weight-bold">Número:</span>
+        <q-separator class="q-my-sm" />
+        <div class="card__data">
+          <div class="card__data-title">
+            <span class="text-weight-bold">Número:</span>
+          </div>
+          <div class="card__data-value"><span>9612365046</span></div>
         </div>
-        <div class="card__data-value"><span>9612365046</span></div>
-      </div>
-      <q-separator></q-separator>
-      <div class="card__data">
-        <div class="card__data-title">
-          <span class="text-weight-bold">Dirección:</span>
-        </div>
-        <div class="card__data-value">
-          <span
-            >San Victorio 13, Pedregal de Sta Úrsula, Coyoacán, 04600 Ciudad de
-            México, CDMX</span
-          >
+        <q-separator class="q-my-sm" />
+        <div class="card__data">
+          <div class="card__data-title">
+            <span class="text-weight-bold">Dirección:</span>
+          </div>
+          <div class="card__data-value">
+            <span
+              >San Victorio 13, Pedregal de Sta Úrsula, Coyoacán, 04600 Ciudad
+              de México, CDMX</span
+            >
+          </div>
         </div>
       </div>
     </q-card-section>
@@ -75,36 +77,20 @@ const openForm = () => {
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 3px;
-}
-
-.card__info {
-  display: flex;
-  padding: 0px !important;
-  flex-direction: column;
-  padding: 20px;
+  gap: 4px; /* Añade espacio entre título y valor */
 }
 
 .card__icon {
   cursor: pointer;
 }
 
-.card__header-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0px 10px 0px 0px;
-}
-
 .card__data .card__data-title {
   display: flex;
   align-items: center;
-  min-width: 25%;
 }
 
 .card__data-value {
   display: flex;
   align-items: center;
-  min-width: 65%;
 }
 </style>
